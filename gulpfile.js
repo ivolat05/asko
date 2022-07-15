@@ -26,21 +26,24 @@ var path = {
 		js: "dist/js/",
 		css: "dist/css/",
 		images: "dist/img/",
-		fonts: "dist/css/fonts/"
+		fonts: "dist/css/fonts/",
+		cssold: "dist/css/"
 	},
 	src: {
 		html: "src/*.html",
 		js: "src/js/*.{js,map}",
-		css: "src/sass/style.{scss,css}",
+		css: "src/sass/style.scss",
 		images: "src/img/**/*.{jpg,png,svg,gif,ico,xml,webmanifest,webp}",
-		fonts: "src/fonts/*.{ttf,woff,woff2,eot,svg}"
+		fonts: "src/fonts/*.{ttf,woff,woff2,eot,svg}",
+		cssold: "src/sass/**/*.{map,css}"
 	},
 	watch: {
 		html: "src/**/*.html",
 		js: "src/js/**/*.{js,map}",
-		css: "src/sass/**/*.{scss,css}",
+		css: "src/sass/**/*.scss",
 		images: "src/img/**/*.{jpg,png,svg,gif,ico,xml,webmanifest,webp}",
-		fonts: "src/fonts/*.{ttf,woff,woff2,eot,svg}"
+		fonts: "src/fonts/*.{ttf,woff,woff2,eot,svg}",
+		cssold: "src/sass/**/*.{map,css}"
 	},
 	clean: "./dist"
 }
@@ -136,7 +139,10 @@ function fonts() {
 		.pipe(dest(path.build.fonts));
 }
 
-
+function cssold() {
+	return src(path.src.cssold)
+		.pipe(dest(path.build.cssold));
+}
 function clean() {
 	return del(path.clean)
 }
@@ -147,9 +153,10 @@ function watchFiles() {
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.images], images);
 	gulp.watch([path.watch.fonts], fonts);
+	gulp.watch([path.watch.cssold], cssold);
 }
 
-const build = gulp.series(clean, gulp.parallel(html, css, js, images, fonts));
+const build = gulp.series(clean, gulp.parallel(html, css, js, images, fonts, cssold));
 const watch = gulp.parallel(build, watchFiles, browserSync)
 
 exports.html = html;
@@ -157,6 +164,7 @@ exports.css = css;
 exports.js = js;
 exports.images = images;
 exports.fonts = fonts;
+exports.cssold = css;
 exports.clean = clean;
 exports.build = build;
 exports.watch = watch;
