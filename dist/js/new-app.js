@@ -2470,7 +2470,7 @@ $(function () {
 	$('.mask-tell').inputmask("+375 (99)999-99-99", {
 
 	});
-	$(".autocomplete-items").mCustomScrollbar({
+	$(".idea-head").mCustomScrollbar({
 
 	});
 })
