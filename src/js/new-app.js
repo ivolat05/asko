@@ -5,7 +5,16 @@ $(function () {
 	$('.mask-tell').inputmask("+375 (99)999-99-99", {
 
 	});
-	$(".idea-head").mCustomScrollbar({
 
+	if (window.innerWidth >= 992) {
+		$(".idea-head").mCustomScrollbar({});
+
+	}
+	window.addEventListener("resize", function () {
+		if (window.innerWidth >= 992) {
+			$(".idea-head").mCustomScrollbar({});
+		} else {
+			$(".idea-head").mCustomScrollbar("destroy");
+		}
 	});
 })

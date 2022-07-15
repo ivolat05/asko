@@ -47,7 +47,6 @@
 }
 
 .previwe__img-idea {
-	height: 566px;
 
 	img {
 		height: 100%;
@@ -256,6 +255,11 @@
 	justify-content: center;
 	color: #00B6C9;
 	text-decoration: none;
+	transition: .3s all;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .idea-body {
